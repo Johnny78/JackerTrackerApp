@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#DC143C"
+    tools:context=".Alert" >
+
+    <Button
+        android:id="@+id/track"
+        android:textSize="20sp"
+        android:padding="25dip"
+        style="@style/btnStyleSeagull"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="55dp"
+        android:layout_marginLeft="47dp"
+        android:onClick="gotoTracking"
+        android:text="@string/confirm" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:textSize="20sp"
+        android:padding="25dip"
+		style="@style/btnStyleSeagull"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/track"
+        android:layout_alignBottom="@+id/track"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_marginRight="42dp"
+        android:onClick="cancel"
+        android:text="@string/refuse" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+		android:gravity="center|top"
+        android:text="Your Motorcycle has been stolen, do you wish to track it?"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="35sp" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/track"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp"
+        android:src="@drawable/alert" />
+
+</RelativeLayout>
