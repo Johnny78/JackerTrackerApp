@@ -31,12 +31,10 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
-import android.app.AlertDialog;
 import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
@@ -44,7 +42,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
@@ -128,14 +125,7 @@ public class GcmIntentService extends IntentService {
 
 		@Override
 		public void onLocationChanged(Location location) {
-			if(location != null){
-//				double pLong = location.getLongitude();
-//				double pLat = location.getLatitude();
-			}
-			else{
-//				textLat.setText("no signal");
-//				textLong.setText("no signal");
-			}
+			Log.i(TAG, "Location changed !");
 			
 		}
 		@Override

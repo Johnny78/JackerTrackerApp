@@ -325,6 +325,6 @@ public class DemoActivity extends Activity {
     	    Log.e(context.getString(R.string.app_name),e.toString(),e);
     	    // add code to handle error
     	  }
-    	  System.out.println("qqq "+ responseString);
+    	  System.out.println(responseString);
     }
 }
