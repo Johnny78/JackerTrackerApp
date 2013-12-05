@@ -36,11 +36,11 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -115,14 +115,25 @@ public class GcmIntentService extends IntentService {
 		LocationListener ll = new MyLocationListener();
 		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 5, ll);	
 		Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		
 		if (location == null){
 			// TODO wait for updated coordinates or less accurate ones
+			Criteria c = new Criteria();
+			c.setAccuracy(Criteria.ACCURACY_COARSE);
+			String bestProvider = lm.getBestProvider(c, true);
+			location = lm.getLastKnownLocation(bestProvider);
+			System.out.println("accuracy: "+bestProvider);
+			double pLong = location.getLongitude();
+			double pLat = location.getLatitude();
+			sendCoor(Double.toString(pLong),Double.toString(pLat));
+			System.out.println("location:\nlat:"+pLat+"\nlong"+pLong);
 		}
 
 		else{
 			double pLong = location.getLongitude();
 			double pLat = location.getLatitude();
 			sendCoor(Double.toString(pLong),Double.toString(pLat));
+			System.out.println("location:\nlat:"+pLat+"\nlong"+pLong);
 		}
 	}
 		
