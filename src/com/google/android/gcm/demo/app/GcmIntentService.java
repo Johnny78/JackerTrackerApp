@@ -40,6 +40,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -112,13 +113,17 @@ public class GcmIntentService extends IntentService {
     	
     	LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);	
 		LocationListener ll = new MyLocationListener();
-		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 5, ll);
-		
+		lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 5, ll);	
 		Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-		System.out.println(location.getTime());
-		double pLong = location.getLongitude();
-		double pLat = location.getLatitude();
-		sendCoor(Double.toString(pLong),Double.toString(pLat));
+		if (location == null){
+			// TODO wait for updated coordinates or less accurate ones
+		}
+
+		else{
+			double pLong = location.getLongitude();
+			double pLat = location.getLatitude();
+			sendCoor(Double.toString(pLong),Double.toString(pLat));
+		}
 	}
 		
 	class MyLocationListener implements LocationListener{
